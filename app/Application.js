@@ -17,10 +17,14 @@ Ext.define('MyApp.Application', {
         console.log("launch");
 
         onCallback = function(){
+            console.log("callback");
             Ext.Viewport.add(Ext.create('MyApp.view.main.Main'));
         }
 
-        Ext.require(localStorage.getItem('language'), onCallback);
+        if( localStorage.getItem('language')!= null )
+            Ext.require(localStorage.getItem('language'), onCallback);
+        else
+            onCallback();
     },
 
     onAppUpdate: function () {
